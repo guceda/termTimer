@@ -45,7 +45,7 @@ function invalidInput() {
     process.stdout.write("\n");
 }
 
-function interval(time, log = log0, step = 1000) {
+function interval(time, step = 1000) {
     const [hh, mm, ss] = getMagnitudes(time);
     const isValidTime = validate([hh, mm, ss]);
 
@@ -53,11 +53,12 @@ function interval(time, log = log0, step = 1000) {
 
     let msLeft = timeToMS([hh, mm, ss]);
     const interval = setInterval(() => {
-        log(msLeft, interval)
+        log0(msLeft, interval)
         msLeft -= step;
     }, step);
 }
 
-interval('00:00:51');
+const myArgs = process.argv.slice(2);
+interval(myArgs[0], myArgs[1]);
 
 
